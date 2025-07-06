@@ -1,0 +1,144 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-image: url("https://dtbtob4osa700.cloudfront.net/DineImages/13102023103226527_dprim.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;  /* <--- This is what you want */
+  background-position: center;
+  position: relative; /* Use relative, not absolute */
+  overflow: hidden;   
+}
+#countdown {
+  font-size:100px;
+  text-align:center;
+  margin-top:200px;
+  transition: opacity 0.3s ease-in-out;
+}
+#score {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 10px;
+  background-color: #c8102f;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+#game {
+  width: 500px;
+  height: 500px;
+  border: 1px solid black;
+  margin: auto;
+  overflow: hidden;
+  background-color: #c8102f;             
+  background-repeat: no-repeat;
+  background-position: center; 
+  position: relative;
+}
+
+
+
+
+#white {
+  display: none;
+  top: 600px;
+  z-index: 100;
+  position: absolute;
+  width: 500px;
+  height: 130px;
+  background-color: white;  
+}
+
+#block {
+  width: 150px;
+  height: 100px;
+  top: 500px;
+  background-size: cover;
+  background-position: center;
+  animation: slide 1s infinite linear;
+  animation-delay: 1s;
+
+  position: absolute;
+
+}
+
+@keyframes slide {
+  0% { top: -100px; }
+  100% { top: 600px; }
+}
+
+#left, #right {
+  width: 25%;
+  position: absolute;
+  height: 500px;
+}
+
+#right {
+  left: 75%;
+}
+
+.lane {
+  width: 20%;
+  position: absolute;
+  height: 500px;
+  /* No background-color here or transparent */
+}
+.lane:nth-child(1) { left: 0%; }
+.lane:nth-child(2) { left: 20%; }
+.lane:nth-child(3) { left: 40%; }
+.lane:nth-child(4) { left: 60%; }
+.lane:nth-child(5) { left: 80%; }
+
+#coin {
+
+    width: 150px;
+    height: 150px;
+    background-repeat: no-repeat;
+    background-size: contain;      /* Show full image without cropping */
+    background-position: center;
+    position: absolute;            /* Better for animations and layering */
+    top: -100px;                   /* Start off screen (top) for slide-in */
+    animation: coinSlide 1s infinite linear;
+    animation-fill-mode: forwards;
+    z-index: 10;   
+   animation-delay: 10s;/* Ensure it appears above background */
+}
+
+@keyframes coinSlide {
+  0% { top: -100px; }
+  100% { top: 600px; }
+}
+
+#character {
+  width: 50px;                     /* One frame width */
+  height: 200px;                    /* Frame height */
+  background-image: url("media/character-sprite.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 100px 200px;     /* Total sprite sheet size */
+  position: absolute;
+
+  /* Center the character on the screen */
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+    /* Animate sprite frames */
+    animation: walk 0.4s steps(2) infinite;
+  }
+
+@keyframes walk {
+  from { background-position: 0 0; }
+  to   { background-position: -100px 0; } /* Shift left by full sprite width */
+}
+
+/* transition */
+
+body {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
